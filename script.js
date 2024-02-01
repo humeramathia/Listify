@@ -115,8 +115,8 @@ fetch(endpoint)
 
 function updateWeather() {
   const weatherInfo = document.getElementById("weather-info");
-  const apiKey = "288d83813c1674286701634fbfab4b6c"; // Replace with your OpenWeatherMap API key
-  const city = "Cape Town"; // Replace with the desired city name
+  const apiKey = "288d83813c1674286701634fbfab4b6c"; y
+  const city = "Cape Town"; 
 
   const weatherEndpoint = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
