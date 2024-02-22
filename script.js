@@ -134,10 +134,10 @@ function updateWeather() {
     .then((weatherData) => {
       const temperature = weatherData.main.temp;
       const description = weatherData.weather[0].description;
-      const weatherText = ` ${temperature}°C`;
-      const descriptionText = ` ${description}`;
+      const weatherText = ` ${Math.floor(temperature)}°C`;
+      const descriptionText = ` ${description.charAt(0).toUpperCase() + description.slice(1)}`;
 
-      weatherInfo.innerHTML = `${weatherText}<br>${descriptionText}`;
+      weatherInfo.innerHTML = `${weatherText}, ${descriptionText}`;
     })
     .catch((error) => {
       console.error("Error fetching weather data:", error);

@@ -148,14 +148,14 @@ span {
   text-align: right;
   color: #fff;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 15px;
+  right: 15px;
   size: small;
 }
 
 #weather-info {
   font-size: 16px;
-  padding: 10px;
+
 }
 
 #unsplashImage {
