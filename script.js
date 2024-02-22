@@ -98,8 +98,8 @@ document.getElementById("taskInput").addEventListener("keypress", function (e) {
 });
 
 //  fetching and displaying images from Unsplash
-let clientID = "mh82EzIkvvm-LHJyK574shNdBhIwNwikRVwKiop4quk";
-let endpoint = `https://api.unsplash.com/photos/random/?client_id=${clientID}`;
+let clientID = "A05exA58W1xewTI2NDJ30h2ycZuQMig748kkLPfw";
+let endpoint = `https://api.nasa.gov/planetary/apod?api_key=A05exA58W1xewTI2NDJ30h2ycZuQMig748kkLPfw`;
 
 let imageElement = document.querySelector("#unsplashImage");
 let imageLink = document.querySelector("#ImageLink");
@@ -110,13 +110,22 @@ fetch(endpoint)
   })
   .then(function (jsonData) {
     console.log(jsonData);
-    imageElement.src = jsonData.urls.regular;
+    if (jsonData.media_type === "image") {
+      imageElement.src = jsonData.url;
+      imageLink.href = jsonData.hdurl; // Link to the high-definition image
+      imageLink.textContent = "View HD Image"; // Text for the link
+    } else {
+      console.error("Today's astronomy picture is not an image.");
+    }
+  })
+  .catch(function (error) {
+    console.error("Error fetching data from NASA API:", error);
   });
 
 function updateWeather() {
   const weatherInfo = document.getElementById("weather-info");
-  const apiKey = "288d83813c1674286701634fbfab4b6c"; y
-  const city = "Cape Town"; 
+  const apiKey = "288d83813c1674286701634fbfab4b6c";
+  const city = "Cape Town";
 
   const weatherEndpoint = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
@@ -125,8 +134,8 @@ function updateWeather() {
     .then((weatherData) => {
       const temperature = weatherData.main.temp;
       const description = weatherData.weather[0].description;
-      const weatherText = `Temperature: ${temperature}°C`;
-      const descriptionText = `Description: ${description}`;
+      const weatherText = ` ${temperature}°C`;
+      const descriptionText = ` ${description}`;
 
       weatherInfo.innerHTML = `${weatherText}<br>${descriptionText}`;
     })
